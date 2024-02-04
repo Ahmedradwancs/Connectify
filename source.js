@@ -37,7 +37,7 @@ function displayPosts(posts) {
         // Create a title for the user
         const userTitle = document.createElement('h3');
         userTitle.classList.add('title');
-        userTitle.textContent = `Username ${post.id}`;
+        userTitle.textContent = `Username ${post.userId}`;
 
         // Create a list for user items
         const userItems = document.createElement('ul');
@@ -57,7 +57,7 @@ function displayPosts(posts) {
 
         // Create an li for the post button
         const postButton = document.createElement('li');
-        postButton.innerHTML = `<button class="Post-button">Post id: </button>`;
+        postButton.innerHTML = `<button class="Post-button">Post id: ${post.id}</button>`;
 
         // Append user image, post title, description, and button to user items list
         userItems.appendChild(userImage);
