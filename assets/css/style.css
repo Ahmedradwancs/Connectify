@@ -206,20 +206,20 @@ img {
 
 /* Post button styles */
 .Post-button {
-    background-color: #4CAF50;
-    color: white;
+    /* background-color: #4CAF50; */
+    color: rgb(7, 7, 7);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 15px;
-    margin-left: 10px;
+    margin-left: 1050px;
 }
 
-.Post-button:hover {
+/* .Post-button:hover {
     background-color: #45a049;
-}
+} */
 
 /* Footer styles */
 footer {
