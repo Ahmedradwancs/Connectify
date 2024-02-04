@@ -53,11 +53,11 @@ h1{
     border: none;
 }
 
-#shopping-cart {
+#Manage-posts {
     margin-left: auto;
 }
 
-#shopping-cart a {
+#Manage-posts a {
     text-decoration: none;
     color: #faf5fd;
     font-size: 16px;
@@ -121,11 +121,10 @@ padding: 20px;
 }
 
 
-
 .filter {
 margin-top: 15px;
 margin-bottom: 5px;
-margin-left: 1100px;
+margin-left: 800px;
 color: #151715;
 
 }
@@ -195,7 +194,7 @@ width: 150px;
 border-radius: 5px;
 }
 
-.buy-button {
+.Post-button {
 background-color: #4CAF50;
 color: white;
 padding: 10px 20px;
@@ -207,13 +206,14 @@ margin-bottom: 15px;
 margin-left: 250px;
 }
 
-.buy-button:hover {
+.Post-button:hover {
 background-color: #45a049;
 }
 
-#summary{
+/* #summary{
 align-self: flex-end;
-}
+} */
+
 footer {
 background-color: #4a4a4a;
 color: #fff;

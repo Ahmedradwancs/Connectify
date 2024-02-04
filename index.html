@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2 - Dynamic webpages</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to HKR Social Hub</h1>
+        <nav> 
+            <ul>
+                <li><h2 id="logo"><a href="./index.html">HKR Social Hub</a></h2></li>
+                <li><a href="#">Home page</a></li>
+                <li>
+                    <a href="#">Users</a>
+                    <ul>
+                        <li><a href="#users">Student</a></li>
+                        <li><a href="#users">Teachers</a></li>
+                        <li><a href="#users">Reserved</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Posts</a></li>
+                <li>
+                    <div id="search-bar">
+                        <input type="text" placeholder="Search...">
+                        <button type="button">Search posts</button>
+                    </div>
+                </li>
+                <li id="Manage-posts"><a href="#" target="_blank"> Log out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="filter">
+            <label for="filter" id="filter">Filter posts by:</label>
+            <select>
+                <option value="Default">Default</option>
+                <option value="User">User</option>
+                <option value="Date-posted">Date posted</option>
+            </select>
+            <label for="sort" id="sort">Sort posts by:</label>
+            <select>
+                <option value="Default">Default</option>
+                <option value="User">User</option>
+                <option value="Date-posted">Date posted</option>
+            </select>
+        </div>
+        <section class="user-section">
+            <h2 id="section-title"> <span>Users</span></h2>
+            <div class="container">
+                <!-- JavaScript will dynamically populate this div with posts -->
+                <div id="posts-container">
+
+                </div>
+                    <ul>
+                            <!-- <li><img src="#" alt="user image"></li> -->
+                            <!-- <li><h3>Post</h3></li> -->
+                        <!-- <li><div id="posts-container"></div></li> -->
+                    </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p>Email: info@hkrsocialhub.com</p>
+                <p>Phone: +46700927723</p>
+                <p>Olastorpsvägen, Kristianstad</p>
+            </div>
+            <div class="terms">
+                <a href="#" class="policy">&#8226; Terms of Service</a>
+                <a href="#" class="policy">&#8226; Privacy Policy</a>
+                <div id="copyright">&copy;2024 HKR Social Hub</div>
+            </div>
+            <div class="social-media">
+                <h2>Connect with us</h2>
+                <ul>
+                    <li><a href="#" target="_blank"><i class="fab fa-faceuser"></i> Facebook</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>   
+    <script type="text/javascript" src="source.js"></script> 
+</body>
+</html>
