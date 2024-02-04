@@ -1,20 +1,23 @@
+/* Reset default margin and padding for consistency across browsers */
 body, h1, h2, h3, ul, p, img {
     margin: 0;
     padding: 0;
 }
 
+/* Basic styling for the body, setting background and font styles */
 body {
     margin: 0;
     padding: 0;
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    font-family: Arial, sans-serif; 
-    color: #333; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #333;
     line-height: 1.6;
     background-color: #fefefe;
 }
 
+/* Header styles */
 header {
     background-color: #4a4a4a;
     color: #fff;
@@ -22,19 +25,21 @@ header {
     text-align: center;
 }
 
-h1{
+/* Styling for main heading */
+h1 {
     margin-top: 15px;
 }
 
-
-#logo{
-    margin-right: 50px;    
+/* Logo styles */
+#logo {
+    margin-right: 50px;
 }
 
-#logo a{
+#logo a {
     font-size: 30px;
 }
 
+/* Search bar styles */
 #search-bar {
     display: flex;
     align-items: center;
@@ -48,11 +53,12 @@ h1{
     border: none;
 }
 
-#search-bar button{
+#search-bar button {
     border-radius: 5px;
     border: none;
 }
 
+/* Styling for the Manage-posts link */
 #Manage-posts {
     margin-left: auto;
 }
@@ -62,6 +68,8 @@ h1{
     color: #faf5fd;
     font-size: 16px;
 }
+
+/* Navigation styles */
 nav {
     text-align: center;
     margin-top: 20px;
@@ -71,7 +79,7 @@ nav ul {
     display: flex;
     list-style: none;
     justify-content: center;
-    font-size:large;
+    font-size: large;
     font-weight: bold;
     align-items: center;
 }
@@ -95,6 +103,7 @@ nav ul li a {
     padding: 10px;
 }
 
+/* Dropdown styles for nested navigation */
 nav ul li:hover ul {
     display: block;
 }
@@ -102,7 +111,7 @@ nav ul li:hover ul {
 nav ul ul {
     display: none;
     position: absolute;
-    background-color: #333;        
+    background-color: #333;
 }
 
 nav ul ul li {
@@ -114,164 +123,168 @@ nav ul ul li a {
     font-size: 14px;
 }
 
-
-
+/* Main content area styles */
 main {
-padding: 20px;
+    padding: 20px;
 }
 
-
+/* Filter section styles */
 .filter {
-margin-top: 15px;
-margin-bottom: 5px;
-margin-left: 800px;
-color: #151715;
-
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 800px;
+    color: #151715;
 }
-
 
 .filter select {
-border-radius: 5px;
+    border-radius: 5px;
 }
 
-#html-filter{
-margin-right: 10px;
-}
-
+/* Container styles for user posts */
 .container {
-display: flex;
-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-span{
-background-color: #fff;
-border-radius: 5px;
-font-size: larger;
-padding: 5px;
+/* Styling for span elements */
+span {
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: larger;
+    padding: 5px;
 }
 
-
+/* User section styles */
 .user-section {
-margin-bottom: 40px;
-border-radius: 10px;
+    margin-bottom: 40px;
+    border-radius: 10px;
 }
 
 .user-section h2 {
-text-align: center;
+    text-align: center;
 }
 
+/* User card hover effect */
 .user:hover {
-transform: scale(1.02);
+    transform: scale(1.02);
 }
 
+/* User title styles */
 .title {
-margin-bottom: 5px;
-margin-left: 10px;
-margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-top: 5px;
 }
 
+/* User items list styles */
 .items {
-list-style: none;
+    list-style: none;
 }
 
+/* Individual user card styles */
 .user {
-/* width:30%; */
-margin: 20px 20px 20px 20px;
-transition: transform 0.3s ease-in-out;
-background-color: rgb(235, 232, 228);
-border-radius: 10px;
-align-items: center;    
+    margin: 20px;
+    transition: transform 0.3s ease-in-out;
+    background-color: rgb(235, 232, 228);
+    border-radius: 10px;
+    align-items: center;
 }
 
+/* User item list item styles */
 .items li {
-margin-bottom: 5px;
-margin-left: 10px;
+    margin-bottom: 5px;
+    margin-left: 10px;
 }
 
+/* User image styles */
 img {
-height: 150px;
-width: 150px;
-border-radius: 5px;
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
 }
 
+/* Post button styles */
 .Post-button {
-background-color: #4CAF50;
-color: white;
-padding: 10px 20px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-font-size: 16px;
-margin-bottom: 15px;
-margin-left: 250px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 15px;
+    margin-left: 10px;
 }
 
 .Post-button:hover {
-background-color: #45a049;
+    background-color: #45a049;
 }
 
-/* #summary{
-align-self: flex-end;
-} */
-
+/* Footer styles */
 footer {
-background-color: #4a4a4a;
-color: #fff;
-text-align: center;
-padding: 20px;
+    background-color: #4a4a4a;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
 }
 
+/* Footer content container styles */
 .footer-content {
-max-width: 1200px;
-margin: 0 auto;
-display: flex;
-justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
+/* Contact info, terms, and social media styles */
 .contact-info,
 .terms,
 .social-media {
-text-align: left;
-color: #fff;
-flex: 1;
+    text-align: left;
+    color: #fff;
+    flex: 1;
 }
 
 .terms {
-margin-top: 10px;
+    margin-top: 10px;
 }
 
-.policy{
-margin: 10px;
+/* Policy link styles */
+.policy {
+    margin: 10px;
 }
 
 .terms a {
-color: #faf5fd;
-text-decoration: none;
-font-size: 16px;
+    color: #faf5fd;
+    text-decoration: none;
+    font-size: 16px;
 }
 
+/* Copyright text styles */
 #copyright {
-color: #faf5fd;
-margin-top: 40px;
-margin-left: 65px;
+    color: #faf5fd;
+    margin-top: 40px;
+    margin-left: 65px;
 }
 
+/* Social media section styles */
 .social-media h2 {
-margin-bottom: 10px;
-color: #fff;
+    margin-bottom: 10px;
+    color: #fff;
 }
 
 .social-media ul {
-list-style: none;
-padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .social-media li {
-margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .social-media a {
-color: #faf5fd;
-text-decoration: none;
-font-size: 16px;
+    color: #faf5fd;
+    text-decoration: none;
+    font-size: 16px;
 }
