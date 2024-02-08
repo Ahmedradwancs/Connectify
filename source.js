@@ -1,124 +1,211 @@
-// create user class with id, username, firstName, lastName, email, image, phone
-class User {
-    constructor(id, username, firstName, lastName, email, image, phone) {
-        this.id = id;
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.image = image;
-        this.phone = phone;
-    }
+// // create user class with id, username, firstName, lastName, email, image, phone
+// class User {
+//     constructor(id, username, firstName, lastName, email, image, phone) {
+//         this.id = id;
+//         this.username = username;
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.email = email;
+//         this.image = image;
+//         this.phone = phone;
+//     }
+// }
+
+let users = [];
+let posts = [];
+let comments = [];
+
+
+async function fetchUsers(){
+    const response = await fetch('https://dummyjson.com/users?limit=100');
+    const data = await response.json();
+    users = data.users;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+async function fetchPosts(){
+    const response = await fetch('https://dummyjson.com/posts?limit=150');
+    const data = await response.json();
+    posts = data.posts;
+}
 
-        // Fetch Post Data
-    fetch(`https://dummyjson.com/posts`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
+async function fetchComments(){
+    const response = await fetch('https://dummyjson.com/comments?limit=340');
+    const data = await response.json();
+    comments = data.comments;
+}
 
+async function fetchAllData(){
+    await fetchUsers();
+    await fetchPosts();
+    await fetchComments();
+}
 
-        
-        let postsContainer = document.querySelector('.post-container');
-        const postsToDisplay = data.posts;
-        postsToDisplay.forEach(post => {
-            displayPosts(post, postsContainer);
-        });
-    })
-    .catch(error => {
-        // Handle errors, log or display an error message
-        console.error('Error fetching posts:', error);
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchAllData();
+    const postsContainer = document.querySelector('.post-container');
+    
+    posts.forEach(post => {
+        displayPosts(post, postsContainer);
     });
+
+    async function displayPosts(post, postsContainer) {
+        let userName = users.find(user => user.id === post.userId).username;
+        let userImage = users.find(user => user.id === post.userId).image;
+        let postBody = post.body;
+        let postTitle = post.title;
+        let postTags = post.tags;
+        let postReactions = post.reactions;
+        let postId = post.id;
+        let postUserId = post.userId;
+        let postComments = comments.filter(comment => comment.postId === post.id);
+        // console.log(postComments);
+
+
+        const postElement = document.createElement('article');
+        postElement.classList.add('post');
+
+        postElement.innerHTML = `
+            <div class="post">
+                <div class="post-header" data-userid = "${post.Id}">
+                    <img  id="profile-pic" src="${userImage}" alt="profile-image">
+                    <h2 class="post-username" > ${userName} </h2>
+                </div>
+
+                <div class="post-content">
+                    <h3 class="post-title
+                    "> ${postTitle}</h3>
+                    <p class="post-body">${postBody}</p>
+                    <br>
+                    <p class="user-id">User id: ${postUserId}</p>
+                    <p class="tags">Tags
+                    : ${postTags}</p>
+                    <p class="reactions">Reactions: ${postReactions}</p>
+                    <h4 class="post-id">Post id: ${postId}</h4>
+                </div>
+                <section class="post-comments">
+                    <h3>Comments</h3>
+                    <ul>
+                        ${postComments.map(comment => `<li>${comment.body}</li>`).join('')}
+                    </ul>
+                </section>
+            </div>
+        `;
+
+
+        postsContainer.appendChild(postElement);
+    }
 });
 
-    
-// Function to Display Posts
-function displayPosts(post, postsContainer) {
-    // Get the container where posts will be displayed
-   
-    const postElement = document.createElement('article');
-    postElement.classList.add('post')
 
 
 
-    postElement.innerHTML = `
-        <div class="post">
+
+//         // Fetch Post Data
+//     fetch(`https://dummyjson.com/posts`)
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error(`Network response was not ok: ${response.status}`);
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+
+
         
-            <div class="post-header"
-                <img  id="profile-pic" src="" alt="profile-image">
-                <h2 class="post-username" data-userid = "${post.userId}"> </h2>
-            </div>
+//         let postsContainer = document.querySelector('.post-container');
+//         const postsToDisplay = data.posts;
+//         postsToDisplay.forEach(post => {
+//             displayPosts(post, postsContainer);
+//         });
+//     })
+//     .catch(error => {
+//         // Handle errors, log or display an error message
+//         console.error('Error fetching posts:', error);
+//     });
+// });
 
-            <div class="post-content">
-                <h3 class="post-title"> ${post.title}</h3>
-                <p class="post-body">${post.body}</p>
-                <br>
-                <p class="user-id">User id: ${post.userId}</p>
-                <p class="tags">Tags: ${post.tags}</p>
-                <p class="reactions">Reactions: ${post.reactions}</p>
-                <h4 class="post-id">Post id: ${post.id}</h4>
-            </div>
-            <section class="post-comments">
-
-            </section>
-        </div>
-    `;
-    postsContainer.appendChild(postElement);
-
-    fetch(`https://dummyjson.com/users/${post.userId}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        const user = new User(data.id, data.username, data.firstName, data.lastName, data.email, data.image, data.phone);
-        const username = postElement.querySelector('.post-username');
-        const profileImage = postElement.querySelector('#profile-pic');
-
-        username.textContent = user.username;
-        profileImage.src = user.image;
-    }
-    )
-    .catch(error => {
-        // Handle errors, log or display an error message
-        console.error('Error fetching user:', error);
-    }
-    );
-
-    fetch(`https://dummyjson.com/comments/post/${post.id}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const commentsContainer = postElement.querySelector('.post-comments');
-        commentsContainer.innerHTML = ``;
-
-        data.comments.forEach(comment => {
-            const commentDiv = document.createElement('div');
-            commentDiv.classList.add('comment');
-            commentDiv.textContent = `${comment.user.username}: ${comment.body}`;
-            commentsContainer.appendChild(commentDiv);
-        }
-        );
     
-    })
-    .catch(error => {
-        // Handle errors, log or display an error message
-        console.error('Error fetching comments:', error);
-    });
-}
+// // Function to Display Posts
+// function displayPosts(post, postsContainer) {
+//     // Get the container where posts will be displayed
+   
+//     const postElement = document.createElement('article');
+//     postElement.classList.add('post')
+
+
+
+//     postElement.innerHTML = `
+//         <div class="post">
+        
+//             <div class="post-header"
+//                 <img  id="profile-pic" src="" alt="profile-image">
+//                 <h2 class="post-username" data-userid = "${post.userId}"> </h2>
+//             </div>
+
+//             <div class="post-content">
+//                 <h3 class="post-title"> ${post.title}</h3>
+//                 <p class="post-body">${post.body}</p>
+//                 <br>
+//                 <p class="user-id">User id: ${post.userId}</p>
+//                 <p class="tags">Tags: ${post.tags}</p>
+//                 <p class="reactions">Reactions: ${post.reactions}</p>
+//                 <h4 class="post-id">Post id: ${post.id}</h4>
+//             </div>
+//             <section class="post-comments">
+
+//             </section>
+//         </div>
+//     `;
+//     postsContainer.appendChild(postElement);
+
+//     fetch(`https://dummyjson.com/users/${post.userId}`)
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error(`Network response was not ok: ${response.status}`);
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+//         console.log(data);
+//         const user = new User(data.id, data.username, data.firstName, data.lastName, data.email, data.image, data.phone);
+//         const username = postElement.querySelector('.post-username');
+//         const profileImage = postElement.querySelector('#profile-pic');
+
+//         username.textContent = user.username;
+//         profileImage.src = user.image;
+//     }
+//     )
+//     .catch(error => {
+//         // Handle errors, log or display an error message
+//         console.error('Error fetching user:', error);
+//     }
+//     );
+
+//     fetch(`https://dummyjson.com/comments/post/${post.id}`)
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error(`Network response was not ok: ${response.status}`);
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+//         const commentsContainer = postElement.querySelector('.post-comments');
+//         commentsContainer.innerHTML = ``;
+
+//         data.comments.forEach(comment => {
+//             const commentDiv = document.createElement('div');
+//             commentDiv.classList.add('comment');
+//             commentDiv.textContent = `${comment.user.username}: ${comment.body}`;
+//             commentsContainer.appendChild(commentDiv);
+//         }
+//         );
+    
+//     })
+//     .catch(error => {
+//         // Handle errors, log or display an error message
+//         console.error('Error fetching comments:', error);
+//     });
+// }
 
 
 
@@ -199,3 +286,4 @@ function displayPosts(post, postsContainer) {
 
 
 // setupInfiniteScroll();
+
