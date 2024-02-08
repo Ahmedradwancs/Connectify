@@ -74,3 +74,27 @@ function displayPosts(posts) {
     });
 }
 
+function setupInfiniteScroll(){
+    let timeout;
+    let buffer = 200;
+
+    window.onscroll = () => {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+            let scrollPosition = window.innerHeight + window.scrollY;
+            let adjustedOffsetHeight = Math.max(document.body.offsetHeight, buffer);
+
+            if (scrollPosition >= adjustedOffsetHeight - buffer) {
+                currentPage++;
+
+                if ((currentPage - 1) * itemsPerPage < items.length) {
+                    displayItems(currentPage);
+                }
+            }
+        }, 300);
+    };
+}
+
+
+setupInfiniteScroll();
