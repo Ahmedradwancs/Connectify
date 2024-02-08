@@ -78,12 +78,13 @@ span {
 }
 
 /* Individual user card styles */
-.user {
+.post {
     margin: 20px;
     transition: transform 0.3s ease-in-out;
     background-color: rgb(235, 232, 228);
     border-radius: 10px;
     align-items: center;
+    /* width: 30%; */
 }
 
 /* User item list item styles */
@@ -93,11 +94,11 @@ span {
 }
 
 /* User image styles */
-img {
+/* img {
     height: 150px;
     width: 150px;
     border-radius: 5px;
-}
+} */
 
 /* Post button styles */
 .Post-button {
@@ -111,6 +112,20 @@ img {
     margin-bottom: 15px;
     margin-left: 1050px;
 }
+/* CSS for loading indicator */
+#loadingIndicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: none; /* Initially hidden */
+}
+
 
 /* .Post-button:hover {
     background-color: #45a049;

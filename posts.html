@@ -13,7 +13,7 @@
         <h1>Welcome to HKR Social Hub</h1>
         <nav> 
             <ul>
-                <li><h2 id="logo"><a href="./index.html">HKR Social Hub</a></h2></li>
+                <li><h2 id="logo"><a href="./posts.html">HKR Social Hub</a></h2></li>
                 <li><a href="./Homepage.html">Home page</a></li>
                 <li>
                     <a href="#">Users</a>
@@ -23,7 +23,7 @@
                         <li><a href="#users">Reserved</a></li>
                     </ul>
                 </li>
-                <li><a href="./index.html">Posts</a></li>
+                <li><a href="./posts.html">Posts</a></li>
                 <li>
                     <div id="search-bar">
                         <input type="text" placeholder="Search...">
@@ -34,6 +34,7 @@
             </ul>
         </nav>
     </header>
+    <div id="loadingIndicator">Loading...</div>
     <main>
         <div class="filter">
             <label for="filter" id="filter">Filter posts by:</label>
@@ -49,22 +50,12 @@
                 <option value="Date-posted">Date posted</option>
             </select>
         </div>
-        <section class="user-section">
-            <h2 id="section-title"> <span>Posts</span></h2>
-            <div class="container">
-                <!-- JavaScript will dynamically populate this div with posts -->
-                <div id="posts-container">
+        <section class="post-container">
+            
 
-                </div>
-                    <ul>
-                            <!-- <li><img src="#" alt="user image"></li> -->
-                            <!-- <li><h3>Post</h3></li> -->
-                        <!-- <li><div id="posts-container"></div></li> -->
-                    </ul>
-            </div>
         </section>
     </main>
-    <footer>
+    <!-- <footer>
         <div class="footer-content">
             <div class="contact-info">
                 <h2>Contact Information</h2>
@@ -86,7 +77,8 @@
                 </ul>
             </div>
         </div>
-    </footer>   
+    </footer>    -->
     <script type="text/javascript" src="source.js"></script> 
 </body>
 </html>
+
