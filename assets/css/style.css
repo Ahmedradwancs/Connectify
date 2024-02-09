@@ -17,7 +17,6 @@ body {
     background-color: #fefefe;
 }
 
-
 /* Main content area styles */
 main {
     padding: 20px;
@@ -35,12 +34,7 @@ main {
     border-radius: 5px;
 }
 
-/* Container styles for user posts */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 
 /* Styling for span elements */
 span {
@@ -67,9 +61,8 @@ span {
 
 /* User title styles */
 .title {
-    margin-bottom: 5px;
+    margin: 5px 0;
     margin-left: 10px;
-    margin-top: 5px;
 }
 
 /* User items list styles */
@@ -77,32 +70,54 @@ span {
     list-style: none;
 }
 
-/* Individual user card styles */
+
+
+/* Adjust the width of each post */
 .post {
-    margin: 20px;
-    transition: transform 0.3s ease-in-out;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
     background-color: rgb(235, 232, 228);
     border-radius: 10px;
-    align-items: center;
-    /* width: 30%; */
+    width: 50%; /* Set the width to 50% */
+    box-sizing: border-box; /* Include padding and border in the width */
+    margin-left: 300px;
+    margin-right: 500px;
 }
 
-/* User item list item styles */
-.items li {
-    margin-bottom: 5px;
-    margin-left: 10px;
+/* Set the container to flex and wrap */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribute posts evenly */
+}
+
+
+/* Adjust the layout of the post header */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* Style for the user image */
+#profile-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    margin-right: 10px; /* Add margin to separate from the username */
 }
 
 /* User image styles */
-/* img {
-    height: 150px;
-    width: 150px;
+img {
+    height: 50px;
+    width: 50px;
     border-radius: 5px;
-} */
+}
 
 /* Post button styles */
 .Post-button {
-    /* background-color: #4CAF50; */
     color: rgb(7, 7, 7);
     padding: 10px 20px;
     border: none;
@@ -112,6 +127,7 @@ span {
     margin-bottom: 15px;
     margin-left: 1050px;
 }
+
 /* CSS for loading indicator */
 #loadingIndicator {
     position: fixed;
@@ -126,7 +142,28 @@ span {
     display: none; /* Initially hidden */
 }
 
+/* Additional styles for comments */
+.comment-element {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f2f2f2; 
+}
 
-/* .Post-button:hover {
-    background-color: #45a049;
-} */
+.comment-header {
+    display: flex;
+    align-items: center;
+}
+
+.comment-username {
+    margin-right: 10px;
+}
+
+span {
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: larger;
+    padding: 5px;
+    font-weight: bold;
+}

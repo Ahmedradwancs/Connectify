@@ -1,289 +1,126 @@
-// // create user class with id, username, firstName, lastName, email, image, phone
-// class User {
-//     constructor(id, username, firstName, lastName, email, image, phone) {
-//         this.id = id;
-//         this.username = username;
-//         this.firstName = firstName;
-//         this.lastName = lastName;
-//         this.email = email;
-//         this.image = image;
-//         this.phone = phone;
-//     }
-// }
+// Define arrays to store data
+const users = [];
+const posts = [];
+const comments = [];
 
-let users = [];
-let posts = [];
-let comments = [];
+// Define pagination variables
+let currentPage = 1;
+const itemsPerPage = 5;
 
-
-async function fetchUsers(){
+// Fetch users data
+async function fetchUsers() {
     const response = await fetch('https://dummyjson.com/users?limit=100');
     const data = await response.json();
-    users = data.users;
+    users.push(...data.users);
 }
 
-async function fetchPosts(){
+// Fetch posts data
+async function fetchPosts() {
     const response = await fetch('https://dummyjson.com/posts?limit=150');
     const data = await response.json();
-    posts = data.posts;
+    posts.push(...data.posts);
 }
 
-async function fetchComments(){
+// Fetch comments data
+async function fetchComments() {
     const response = await fetch('https://dummyjson.com/comments?limit=340');
     const data = await response.json();
-    comments = data.comments;
+    comments.push(...data.comments);
 }
 
-async function fetchAllData(){
-    await fetchUsers();
-    await fetchPosts();
-    await fetchComments();
+// Fetch all data
+async function fetchAllData() {
+    await Promise.all([fetchUsers(), fetchPosts(), fetchComments()]);
 }
 
+// Initialize and set up infinite scroll
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchAllData();
-    const postsContainer = document.querySelector('.post-container');
-    
-    posts.forEach(post => {
-        displayPosts(post, postsContainer);
-    });
-
-    async function displayPosts(post, postsContainer) {
-        let userName = users.find(user => user.id === post.userId).username;
-        let userImage = users.find(user => user.id === post.userId).image;
-        let postBody = post.body;
-        let postTitle = post.title;
-        let postTags = post.tags;
-        let postReactions = post.reactions;
-        let postId = post.id;
-        let postUserId = post.userId;
-        let postComments = comments.filter(comment => comment.postId === post.id);
-        // console.log(postComments);
-
-
-        const postElement = document.createElement('article');
-        postElement.classList.add('post');
-
-        postElement.innerHTML = `
-            <div class="post">
-                <div class="post-header" data-userid = "${post.Id}">
-                    <img  id="profile-pic" src="${userImage}" alt="profile-image">
-                    <h2 class="post-username" > ${userName} </h2>
-                </div>
-
-                <div class="post-content">
-                    <h3 class="post-title
-                    "> ${postTitle}</h3>
-                    <p class="post-body">${postBody}</p>
-                    <br>
-                    <p class="user-id">User id: ${postUserId}</p>
-                    <p class="tags">Tags
-                    : ${postTags}</p>
-                    <p class="reactions">Reactions: ${postReactions}</p>
-                    <h4 class="post-id">Post id: ${postId}</h4>
-                </div>
-                <section class="post-comments">
-                    <h3>Comments</h3>
-                    <ul>
-                        ${postComments.map(comment => `<li>${comment.body}</li>`).join('')}
-                    </ul>
-                </section>
-            </div>
-        `;
-
-
-        postsContainer.appendChild(postElement);
-    }
+    setupInfiniteScroll();
+    displayItems(currentPage);
 });
 
+// Display items based on current page
+function displayItems(page) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const slicedPosts = posts.slice(startIndex, endIndex);
+    const postsContainer = document.querySelector('.post-container');
+    slicedPosts.forEach(post => {
+        displayPost(post, postsContainer);
+    });
+}
 
+// Fetch comments for a specific post
+function fetchCommentsForPost(postId) {
+    return comments.filter(comment => comment.postId === postId);
+}
 
+// Fetch user data by user ID
+function fetchUserById(userId) {
+    return users.find(user => user.id === userId);
+}
 
+// Create HTML element for a comment
+function createCommentElement(comment) {
+    const commentElement = document.createElement('div');
+    commentElement.classList.add('comment');
+    commentElement.innerHTML = `<p>${comment.body}</p>`;
+    return commentElement;
+}
 
-//         // Fetch Post Data
-//     fetch(`https://dummyjson.com/posts`)
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error(`Network response was not ok: ${response.status}`);
-//         }
-//         return response.json();
-//     })
-//     .then(data => {
+// Display a single post
+async function displayPost(post, postsContainer) {
+    const { userId, id: postId, title, body, tags, reactions } = post;
+    const user = fetchUserById(userId);
+    const postComments = fetchCommentsForPost(postId);
+    const postElement = document.createElement('article');
+    postElement.classList.add('post');
+    postElement.innerHTML = `
+        <div class="post">
+            <div class="post-header" data-userid="${user.id}">
+                <img id="profile-pic" src="${user.image}" alt="profile-image">
+                <div>
+                    <h2 class="post-username">${user.username}</h2>
+                </div>
+            </div>
+            <div class="post-content">
+                <h3 class="post-title">${title}</h3>
+                <p class="post-body">${body}</p>
+                <br>
+                <p class="user-id">User id: ${userId}</p>
+                <p class="tags">Tags: ${tags}</p>
+                <p class="reactions">Reactions: ${reactions}</p>
+                <h4 class="post-id">Post id: ${postId}</h4>
+            </div>
+            <section class="post-comments">
+                <h3>Comments</h3>
+                <ul>
+                    ${postComments.map(comment => `<li class="comment-element"><span>${comment.user.username}</span>: ${comment.body}</li>`).join('')}
+                </ul>
+            </section>
+        </div>`;
+    postsContainer.appendChild(postElement);
+}
 
+// Set up infinite scroll
+function setupInfiniteScroll() {
+    let timeout;
+    const buffer = 200;
 
-        
-//         let postsContainer = document.querySelector('.post-container');
-//         const postsToDisplay = data.posts;
-//         postsToDisplay.forEach(post => {
-//             displayPosts(post, postsContainer);
-//         });
-//     })
-//     .catch(error => {
-//         // Handle errors, log or display an error message
-//         console.error('Error fetching posts:', error);
-//     });
-// });
+    window.onscroll = () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            const scrollPosition = window.innerHeight + window.scrollY;
+            const adjustedOffsetHeight = Math.max(document.body.offsetHeight, buffer);
+            if (scrollPosition >= adjustedOffsetHeight - buffer) {
+                currentPage++;
+                if ((currentPage - 1) * itemsPerPage < posts.length) {
+                    displayItems(currentPage);
+                }
+            }
+        }, 300);
+    };
+}
 
-    
-// // Function to Display Posts
-// function displayPosts(post, postsContainer) {
-//     // Get the container where posts will be displayed
-   
-//     const postElement = document.createElement('article');
-//     postElement.classList.add('post')
-
-
-
-//     postElement.innerHTML = `
-//         <div class="post">
-        
-//             <div class="post-header"
-//                 <img  id="profile-pic" src="" alt="profile-image">
-//                 <h2 class="post-username" data-userid = "${post.userId}"> </h2>
-//             </div>
-
-//             <div class="post-content">
-//                 <h3 class="post-title"> ${post.title}</h3>
-//                 <p class="post-body">${post.body}</p>
-//                 <br>
-//                 <p class="user-id">User id: ${post.userId}</p>
-//                 <p class="tags">Tags: ${post.tags}</p>
-//                 <p class="reactions">Reactions: ${post.reactions}</p>
-//                 <h4 class="post-id">Post id: ${post.id}</h4>
-//             </div>
-//             <section class="post-comments">
-
-//             </section>
-//         </div>
-//     `;
-//     postsContainer.appendChild(postElement);
-
-//     fetch(`https://dummyjson.com/users/${post.userId}`)
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error(`Network response was not ok: ${response.status}`);
-//         }
-//         return response.json();
-//     })
-//     .then(data => {
-//         console.log(data);
-//         const user = new User(data.id, data.username, data.firstName, data.lastName, data.email, data.image, data.phone);
-//         const username = postElement.querySelector('.post-username');
-//         const profileImage = postElement.querySelector('#profile-pic');
-
-//         username.textContent = user.username;
-//         profileImage.src = user.image;
-//     }
-//     )
-//     .catch(error => {
-//         // Handle errors, log or display an error message
-//         console.error('Error fetching user:', error);
-//     }
-//     );
-
-//     fetch(`https://dummyjson.com/comments/post/${post.id}`)
-//     .then(response => {
-//         if (!response.ok) {
-//             throw new Error(`Network response was not ok: ${response.status}`);
-//         }
-//         return response.json();
-//     })
-//     .then(data => {
-//         const commentsContainer = postElement.querySelector('.post-comments');
-//         commentsContainer.innerHTML = ``;
-
-//         data.comments.forEach(comment => {
-//             const commentDiv = document.createElement('div');
-//             commentDiv.classList.add('comment');
-//             commentDiv.textContent = `${comment.user.username}: ${comment.body}`;
-//             commentsContainer.appendChild(commentDiv);
-//         }
-//         );
-    
-//     })
-//     .catch(error => {
-//         // Handle errors, log or display an error message
-//         console.error('Error fetching comments:', error);
-//     });
-// }
-
-
-
-
-    // // Get the container for users
-    // const usersContainer = document.querySelector('.container');
-
-    // // Loop through each post in the fetched data
-    // posts.forEach(post => {
-    //     // Create a div for each user
-    //     const userDiv = document.createElement('div');
-    //     userDiv.classList.add('user');
-
-
-
-        // // Create a title for the user
-        // const userTitle = document.createElement('h3');
-        // userTitle.classList.add('title');
-        // userTitle.textContent = `Username ${post.userId}`;
-
-        // // Create a list for user items
-        // const userItems = document.createElement('ul');
-        // userItems.classList.add('items');
-
-        // // Create an li for user image
-        // const userImage = document.createElement('li');
-        // // userImage.innerHTML = `<img src="${post.image}" alt="user image">`;
-
-        // // Create an li for user post title
-        // const userPostTitle = document.createElement('li');
-        // // userPostTitle.innerHTML = `<h3>Post</h3>`;
-
-        // // Create an li for user description
-        // const userDescription = document.createElement('li');
-        // userDescription.textContent = `Description: ${post.body}`;
-
-        // // Create an li for the post button
-        // const postButton = document.createElement('li');
-        // postButton.innerHTML = `<button class="Post-button">Post id: ${post.id}</button>`;
-
-        // // Append user image, post title, description, and button to user items list
-        // userItems.appendChild(userImage);
-        // userItems.appendChild(userPostTitle);
-        // userItems.appendChild(userDescription);
-        // userItems.appendChild(postButton);
-
-        // // Append user title and items list to the user div
-        // userDiv.appendChild(userTitle);
-        // userDiv.appendChild(userItems);
-
-        // // Append the user div to the container for users
-        // usersContainer.appendChild(userDiv);
-//     });
-// }
-
-
-// function setupInfiniteScroll(){
-//     let timeout;
-//     let buffer = 200;
-
-//     window.onscroll = () => {
-//         clearTimeout(timeout);
-
-//         timeout = setTimeout(() => {
-//             let scrollPosition = window.innerHeight + window.scrollY;
-//             let adjustedOffsetHeight = Math.max(document.body.offsetHeight, buffer);
-
-//             if (scrollPosition >= adjustedOffsetHeight - buffer) {
-//                 currentPage++;
-
-//                 if ((currentPage - 1) * itemsPerPage < items.length) {
-//                     displayItems(currentPage);
-//                 }
-//             }
-//         }, 300);
-//     };
-// }
-
-
-// setupInfiniteScroll();
 
