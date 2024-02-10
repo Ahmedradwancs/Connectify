@@ -69,7 +69,7 @@ function createCommentElement(comment) {
     return commentElement;
 }
 
-// Display a signle post
+// Display a single post
 async function displayPost(post, postsContainer) {
     const { userId, id: postId, title, body, tags, reactions } = post;
     const user = fetchUserById(userId);
@@ -79,7 +79,7 @@ async function displayPost(post, postsContainer) {
     postElement.innerHTML = `
         <div class="post">
             <div class="post-header" data-userid="${user.id}">
-                <img id="profile-pic" src="${user.image}" alt="profile-image">
+                <img class="profile-pic" src="${user.image}" alt="profile-image">
                 <div>
                     <h2 class="post-username">${user.username}</h2>
                 </div>
@@ -102,8 +102,6 @@ async function displayPost(post, postsContainer) {
         </div>`;
     postsContainer.appendChild(postElement);
 }
-
-// <p class="user-id">User id: ${userId}</p>
 
 // Set up infinite scroll
 function setupInfiniteScroll() {
@@ -158,3 +156,47 @@ document.getElementById('contactForm').addEventListener('submit', function(event
 document.getElementById('confirm').addEventListener('change', function() {
     document.getElementById('sendButton').disabled = !this.checked;
 });
+
+
+// // Function to fetch user profile by user ID
+// async function fetchUserProfile(userId) {
+//     const response = await fetch(`https://dummyjson.com/user/${userId}`);
+//     const userData = await response.json();
+//     return userData;
+// }
+
+// // Event listener to display user profile modal on username click
+// document.addEventListener('click', async (event) => {
+//     if (event.target.classList.contains('post-username')) {
+//         const userId = event.target.parentElement.dataset.userid;
+//         const userProfile = await fetchUserProfile(userId);
+//         displayUserProfileModal(userProfile);
+//     }
+// });
+
+// // Function to display user profile modal
+// function displayUserProfileModal(userProfile) {
+//     // Create modal HTML structure
+//     const modal = document.createElement('div');
+//     modal.classList.add('modal');
+//     modal.innerHTML = `
+//         <div class="modal-content">
+//             <span class="close">&times;</span>
+//             <h2>User Profile</h2>
+//             <p>Name: ${userProfile.name}</p>
+//             <p>Email: ${userProfile.email}</p>
+//             <p>Address: ${userProfile.address}</p>
+//             <p>Phone: ${userProfile.phone}</p>
+//             <!-- Add more profile information here -->
+//         </div>
+//     `;
+
+//     // Append modal to the document body
+//     document.body.appendChild(modal);
+
+//     // Close modal event listener
+//     const closeBtn = modal.querySelector('.close');
+//     closeBtn.addEventListener('click', () => {
+//         modal.remove();
+//     });
+// }

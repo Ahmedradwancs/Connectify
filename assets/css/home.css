@@ -16,17 +16,48 @@ body {
 header {
     background-color: #4a4a4a;
     color: #fff;
-    padding: 10px;
     text-align: center;
+}
+
+.connectify-image {
+    /* background-image: linear-gradient(#01e8e0, #4eb8ea, #738ff0); */
+    background-color: #f2f5f7;
+    color: rgb(16, 16, 16); 
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+    font-family: 'Arial', sans-serif; 
+}
+
+.connectify-image h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    line-height: 1.2; 
+    text-transform: uppercase; 
+}
+
+.connectify-image p {
+    font-size: 1rem; 
+    margin-bottom: 2.5rem; 
+}
+
+.connectify-image img {  
+    object-fit: cover; 
+    border-radius: 10px; 
+    margin-top: 0;
+    margin-bottom: 50px;
+    background-color: #f2f5f7;
+
 }
 
 main {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-section {
-    margin-bottom: 30px;
-}
 
 h2 {
     color: #4a4a4a;

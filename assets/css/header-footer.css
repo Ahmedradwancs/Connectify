@@ -39,12 +39,12 @@ h1 {
     border: none;
 }
 
-/* Styling for the Manage-posts link */
-#Manage-posts {
+/* Styling for the about us link */
+#about {
     margin-left: auto;
 }
 
-#Manage-posts a {
+#about a {
     text-decoration: none;
     color: #faf5fd;
     font-size: 16px;

@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connectify - Home</title>
+    <link rel="stylesheet" href="./assets/css/home.css">
     <link rel="stylesheet" href="/assets/css/header-footer.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/contactForm.css">
 </head>
 <body>
     <header>
         <h1>Welcome to Connectify</h1>
         <nav> 
             <ul>
-                <li><h2 id="logo"><a href="./posts.html">Connectify</a></h2></li>
+                <li><h2 id="logo"><a href="./posts.html"><img src="./assets/img/logo.png" alt="Connectify Logo" width="300px" height="100px"></a></h2></li>
                 <li><a href="./homepage.html">Home page</a></li>
                 <li><a href="./posts.html">Posts</a></li>
                 <li><a href="./contactForm.html">Contact us</a></li>
@@ -27,31 +26,34 @@
             </ul>
         </nav>
     </header>
-    <div id="loadingIndicator">Loading...</div>
     <main>
-        <section id="contact-form">
-            <h2>Contact Us</h2>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" id="confirm" name="confirm" required>
-                    <label for="confirm">Confirm to send</label>
-                </div>
-                <button type="submit" id="sendButton" disabled>Send</button>
-            </form>
-        </section>        
-
+        <section>
+            <h2>About Connectify</h2>
+            <p>
+                Connectify is a platform where students, teachers, and reserved members can connect and share their thoughts, experiences, and knowledge. 
+                Join our community to engage in meaningful discussions, explore diverse perspectives, and stay updated on the latest posts.
+            </p>
+        </section>
+        <section>
+            <h2>Purpose</h2>
+            <p>
+                The purpose of Connectify is to create a collaborative and inclusive space for the academic community. 
+                Whether you're a student looking for study tips, a teacher sharing educational insights, or a reserved member exploring new ideas, 
+                Connectify aims to foster learning, communication, and community building.
+            </p>
+        </section>
+        <section>
+            <h2>User Instructions</h2>
+            <p>
+                Getting started is easy! Follow these simple steps:
+            </p>
+            <ol>
+                <li>Explore the navigation menu to access different sections of the platform.</li>
+                <li>Use the search bar to find specific posts or topics of interest.</li>
+                <li>Connect with other users by engaging in discussions and sharing your thoughts.</li>
+                <li>Stay updated on the latest posts and trends in your academic community.</li>
+            </ol>
+        </section>
     </main>
     <footer>
         <div class="footer-content">
