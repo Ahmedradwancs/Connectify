@@ -69,7 +69,7 @@ function createCommentElement(comment) {
     return commentElement;
 }
 
-// Display a single post
+// Display a signle post
 async function displayPost(post, postsContainer) {
     const { userId, id: postId, title, body, tags, reactions } = post;
     const user = fetchUserById(userId);
@@ -87,11 +87,11 @@ async function displayPost(post, postsContainer) {
             <div class="post-content">
                 <h3 class="post-title">${title}</h3>
                 <p class="post-body">${body}</p>
-                <br>
-                <p class="user-id">User id: ${userId}</p>
-                <p class="tags">Tags: ${tags}</p>
-                <p class="reactions">Reactions: ${reactions}</p>
-                <h4 class="post-id">Post id: ${postId}</h4>
+                <div class="post-details">
+                    <p class="tags">Tags: ${tags}</p>
+                    <p class="reactions">Reactions: ${reactions}</p>
+                    <p class="post-id">Post id: ${postId}</p>
+                </div>
             </div>
             <section class="post-comments">
                 <h3>Comments</h3>
@@ -102,6 +102,8 @@ async function displayPost(post, postsContainer) {
         </div>`;
     postsContainer.appendChild(postElement);
 }
+
+// <p class="user-id">User id: ${userId}</p>
 
 // Set up infinite scroll
 function setupInfiniteScroll() {
@@ -123,4 +125,36 @@ function setupInfiniteScroll() {
     };
 }
 
+// Add event listener for form submission
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
 
+    // Validate form fields
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const confirm = document.getElementById('confirm').checked;
+
+    if (!/\d/.test(name)) { // Check if name contains integers
+        if (email.includes('@') && email.includes('.')) { // Check if email is valid
+            if (confirm) { // Check if confirm checkbox is checked
+                // Form is valid, proceed with sending
+                alert('Form submitted successfully!');
+                // Reset form
+                this.reset();
+                // Disable submit button after successful submission
+                document.getElementById('sendButton').disabled = true;
+            } else {
+                alert('Please confirm before sending.');
+            }
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    } else {
+        alert('Name should not contain integers.');
+    }
+});
+
+// Add event listener to enable/disable submit button based on checkbox state
+document.getElementById('confirm').addEventListener('change', function() {
+    document.getElementById('sendButton').disabled = !this.checked;
+});

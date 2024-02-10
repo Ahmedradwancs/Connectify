@@ -1,0 +1,86 @@
+/* Reset default margin and padding for consistency across browsers */
+body, h1, h2, h3, ul, p, img {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for the body, setting background and font styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #fefefe;
+}
+
+/* Main content area styles */
+main {
+    padding: 20px;
+}
+
+/* Center the contact form on the page */
+#contact-form {
+    width: 50%;
+    margin: 50px auto; /* Center horizontally */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    text-align: center;
+}
+
+/* Style the form heading */
+#contact-form h2 {
+    margin-bottom: 10px; /* Reduce margin */
+}
+
+/* Style form groups */
+.form-group {
+    margin-bottom: 15px; /* Increase margin */
+}
+
+.form-group label {
+    display: block; /* Make labels block */
+    margin-bottom: 5px; /* Add space between label and input */
+}
+
+/* Style form inputs and textarea */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="checkbox"] {
+    width: 80%; /* Adjust width of input boxes */
+    padding: 10px; /* Reduce padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block; /* Make inputs block */
+    margin: 0 auto 10px; /* Center horizontally and add space below */
+}
+
+.form-group textarea {
+    width: 80%; /* Adjust width of textarea */
+    padding: 10px; /* Reduce padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block; /* Make textarea block */
+    margin: 0 auto 10px; /* Center horizontally and add space below */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Style the submit button */
+#sendButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sendButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

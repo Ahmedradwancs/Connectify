@@ -23,7 +23,7 @@ main {
 }
 
 /* Filter section styles */
-.filter {
+/* .filter {
     margin-top: 15px;
     margin-bottom: 5px;
     margin-left: 800px;
@@ -32,9 +32,10 @@ main {
 
 .filter select {
     border-radius: 5px;
-}
+} */
 
 
+/* Center the contact form on the page */
 
 /* Styling for span elements */
 span {
@@ -79,17 +80,49 @@ span {
     padding: 10px;
     background-color: rgb(235, 232, 228);
     border-radius: 10px;
-    width: 50%; /* Set the width to 50% */
+    /* width: 90%; Set the width to 50% */
     box-sizing: border-box; /* Include padding and border in the width */
-    margin-left: 300px;
-    margin-right: 500px;
+    /* margin-left: 100px;
+    margin-right: 100px; */
+    justify-content: center;
+    justify-items: center;
 }
+
+
+.post-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.user-id,
+.tags,
+.reactions,
+.post-id {
+    margin-bottom: 5px;
+}
+
 
 /* Set the container to flex and wrap */
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; /* Distribute posts evenly */
+    width: 40%;
+    justify-content: center;
+    justify-items: center;
 }
 
 
@@ -117,7 +150,7 @@ img {
 }
 
 /* Post button styles */
-.Post-button {
+/* .Post-button {
     color: rgb(7, 7, 7);
     padding: 10px 20px;
     border: none;
@@ -126,7 +159,7 @@ img {
     font-size: 16px;
     margin-bottom: 15px;
     margin-left: 1050px;
-}
+} */
 
 /* CSS for loading indicator */
 #loadingIndicator {

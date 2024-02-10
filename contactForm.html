@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connectify</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Connectify - Home</title>
     <link rel="stylesheet" href="/assets/css/header-footer.css">
-
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/contactForm.css">
 </head>
 <body>
     <header>
@@ -23,36 +23,41 @@
                         <button type="button">Search posts</button>
                     </div>
                 </li>
-                <li id="Manage-posts"><a href="./homepage.html" target="_blank"> About us</a></li>
+                <li id="Manage-posts"><a href="./homepage.html" target=""> About us</a></li>
             </ul>
         </nav>
     </header>
     <div id="loadingIndicator">Loading...</div>
     <main>
-        <!-- <div class="filter">
-            <label for="filter" id="filter">Filter posts by:</label>
-            <select>
-                <option value="Default">Default</option>
-                <option value="User">User</option>
-                <option value="Date-posted">Date posted</option>
-            </select>
-            <label for="sort" id="sort">Sort posts by:</label>
-            <select>
-                <option value="Default">Default</option>
-                <option value="User">User</option>
-                <option value="Date-posted">Date posted</option>
-            </select>
-        </div> -->
-        <section class="post-container">
+        <section id="contact-form">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="confirm" name="confirm" required>
+                    <label for="confirm">Confirm to send</label>
+                </div>
+                <button type="submit" id="sendButton" disabled>Send</button>
+            </form>
+        </section>        
 
-
-        </section>
     </main>
     <footer>
         <div class="footer-content">
             <div class="contact-info">
                 <h2>Contact Information</h2>
-                <p>Email: info@connectify</p>
+                <p>Email: info@connectify.com</p>
                 <p>Phone: +46700927723</p>
                 <p>Olastorpsvägen, Kristianstad</p>
             </div>
@@ -74,4 +79,3 @@
     <script type="text/javascript" src="source.js"></script> 
 </body>
 </html>
-
