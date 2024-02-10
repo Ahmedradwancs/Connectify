@@ -4,27 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connectify - Home</title>
-    <link rel="stylesheet" href="/assets/css/header-footer.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/contactForm.css">
+    <link rel="stylesheet" href="/assets/css/header-footer.css">
+
 </head>
 <body>
     <header>
         <h1>Welcome to Connectify</h1>
-        <nav> 
-            <ul>
-                <li><h2 id="logo"><a href="./posts.html">Connectify</a></h2></li>
-                <li><a href="./homepage.html">Home page</a></li>
-                <li><a href="./posts.html">Posts</a></li>
-                <li><a href="./contactForm.html">Contact us</a></li>
-                <li>
-                    <div id="search-bar">
-                        <input type="text" placeholder="Search...">
-                        <button type="button">Search posts</button>
-                    </div>
-                </li>
-                <li id="about"><a href="./about.html" target=""> About us</a></li>
-            </ul>
+        <nav class="navbar">
+            <div class="logo"> 
+                <img src="./assets/img/logo.png" alt="Connectify logo" >
+            </div>
+            <div class="menu">
+                <a href="./homepage.html">Home page</a>
+                <a href="./posts.html">Posts</a>
+                <a href="./about.html" target=""> About us</a>
+                <a href="./contactForm.html">Contact us</a>
+            </div>
+            <div id="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="button">Search posts</button>
+            </div>
         </nav>
     </header>
     <div id="loadingIndicator">Loading...</div>
