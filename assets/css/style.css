@@ -70,6 +70,13 @@ span {
     list-style: none;
 }
 
+#posts_title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    
+}
 
 
 /* Adjust the width of each post */
@@ -87,6 +94,22 @@ span {
     justify-items: center;
 }
 
+.post-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+/* Adjust the layout of the post header */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 
 /* Adjust the width of each post */
 .post-container {
@@ -99,13 +122,7 @@ span {
     flex-direction: column;
 }
 
-.post-details {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
+
 
 /* Adjust the margin of the post details */
 .user-id,
@@ -126,13 +143,6 @@ span {
     justify-items: center;
 }
 
-
-/* Adjust the layout of the post header */
-.post-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
 
 
 /* Style for the user image */
