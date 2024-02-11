@@ -91,6 +91,8 @@ function displayPost(post, postsContainer) {
     const postComments = fetchCommentsForPost(postId);
     const postElement = document.createElement('article');
     postElement.classList.add('post');
+
+    // create the post element's inner HTML using a template string and append it to the posts container
     postElement.innerHTML = `
         <div class="post">
             <div class="post-header" data-userid="${user.id}">
