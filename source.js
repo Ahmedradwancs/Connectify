@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayItems(currentPage);
 });
 
+
+
 // Display items based on current page
 function displayItems(page) {
     const startIndex = (page - 1) * itemsPerPage;
@@ -58,7 +60,8 @@ function fetchCommentsForPost(postId) {
 
 // Fetch user data by user ID
 function fetchUserById(userId) {
-    return users.find(user => user.id === userId);
+    // console.log(users.find(user => user.id == userId));
+    return users.find(user => user.id == userId);
 }
 
 // Create HTML element for a comment
@@ -70,7 +73,7 @@ function createCommentElement(comment) {
 }
 
 // Display a single post
-async function displayPost(post, postsContainer) {
+function displayPost(post, postsContainer) {
     const { userId, id: postId, title, body, tags, reactions } = post;
     const user = fetchUserById(userId);
     const postComments = fetchCommentsForPost(postId);
@@ -81,7 +84,7 @@ async function displayPost(post, postsContainer) {
             <div class="post-header" data-userid="${user.id}">
                 <img class="profile-pic" src="${user.image}" alt="profile-image">
                 <div>
-                    <h2 class="post-username">${user.username}</h2>
+                <h2 class="post-username"><a href="#" class="user-profile-link" data-userid="${user.id}">${user.username}</a></h2> 
                 </div>
             </div>
             <div class="post-content">
@@ -101,7 +104,53 @@ async function displayPost(post, postsContainer) {
             </section>
         </div>`;
     postsContainer.appendChild(postElement);
+
+        // Add event listener for user profile links
+        const userProfileLinks = postElement.querySelectorAll('.user-profile-link');
+        userProfileLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                const userId = event.target.dataset.userid;
+                // Call function to open modal with user profile information
+                openUserProfileModal(userId);
+            });
+        });
 }
+
+// Function to open user profile modal
+function openUserProfileModal(userId) {
+    const user = fetchUserById(userId);
+    // console.log(user);
+    if (user != undefined) {
+        // Create modal HTML
+        const modalHTML = `
+            <div class="modal_user">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>${user.username}'s Profile</h2>
+                    <img src="${user.image}" alt="profile-image">
+                    <p>Name: ${user.firstName} ${user.lastName}</p>
+                    <p>Email: ${user.email}</p>
+                    <p>Phone: ${user.phone}</p>
+                </div>
+            </div>`;
+        // Append modal HTML to the body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        // Add event listener to close the modal
+        document.querySelector('.modal_user .close').addEventListener('click', () => {
+            document.querySelector('.modal_user').remove();
+        });
+    } else {
+        console.error('User not found');
+    }
+}
+
+
+
+
+
+
+
 
 // Set up infinite scroll
 function setupInfiniteScroll() {
@@ -123,40 +172,34 @@ function setupInfiniteScroll() {
     };
 }
 
-// Add event listener for form submission
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Validate form fields
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const confirm = document.getElementById('confirm').checked;
-
-    if (!/\d/.test(name)) { // Check if name contains integers
-        if (email.includes('@') && email.includes('.')) { // Check if email is valid
-            if (confirm) { // Check if confirm checkbox is checked
-                // Form is valid, proceed with sending
-                alert('Form submitted successfully!');
-                // Reset form
-                this.reset();
-                // Disable submit button after successful submission
-                document.getElementById('sendButton').disabled = true;
-            } else {
-                alert('Please confirm before sending.');
-            }
-        } else {
-            alert('Please enter a valid email address.');
-        }
-    } else {
-        alert('Name should not contain integers.');
-    }
-});
-
-// Add event listener to enable/disable submit button based on checkbox state
-document.getElementById('confirm').addEventListener('change', function() {
-    document.getElementById('sendButton').disabled = !this.checked;
-});
-
+// Add event listener to open user profile modal
+// document.querySelector('.post-container').addEventListener('click', async (event) => {
+//     // Check if the clicked element has the post-username class
+//     if (event.target.classList.contains('post-username')) {
+//         const userId = event.target.closest('.post-header').dataset.userid;
+//         if (userId) {
+//             const user = fetchUserById(userId);
+//             // Create modal HTML
+//             const modalHTML = `
+//                 <div class="modal-content">
+//                     <span class="close">&times;</span>
+//                     <h2>${user.username}'s Profile</h2>
+//                     <img src="${user.image}" alt="profile-image">
+//                     <p>Name: ${user.name}</p>
+//                     <p>Email: ${user.email}</p>
+//                     <p>Phone: ${user.phone}</p>
+//                     <p>Website: ${user.website}</p>
+//                     <p>Company: ${user.company.name}</p>
+//                 </div>`;
+//             // Append modal HTML to the body
+//             document.body.insertAdjacentHTML('beforeend', modalHTML);
+//             // Add event listener to close the modal
+//             document.querySelector('.modal .close').addEventListener('click', () => {
+//                 document.querySelector('.modal').remove();
+//             });
+//         }
+//     }
+// });
 
 // // Function to fetch user profile by user ID
 // async function fetchUserProfile(userId) {
