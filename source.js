@@ -30,8 +30,20 @@ async function fetchComments() {
 
 // Fetch all data
 async function fetchAllData() {
-    await Promise.all([fetchUsers(), fetchPosts(), fetchComments()]);
+    // Display loading indicator
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    loadingIndicator.style.display = 'block';
+
+    try {
+        await Promise.all([fetchUsers(), fetchPosts(), fetchComments()]);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    } finally {
+        // Hide loading indicator after fetching is completed
+        loadingIndicator.style.display = 'none';
+    }
 }
+
 
 // Initialize and set up infinite scroll
 document.addEventListener('DOMContentLoaded', async () => {
@@ -146,12 +158,6 @@ function openUserProfileModal(userId) {
 }
 
 
-
-
-
-
-
-
 // Set up infinite scroll
 function setupInfiniteScroll() {
     let timeout;
@@ -171,75 +177,3 @@ function setupInfiniteScroll() {
         }, 300);
     };
 }
-
-// Add event listener to open user profile modal
-// document.querySelector('.post-container').addEventListener('click', async (event) => {
-//     // Check if the clicked element has the post-username class
-//     if (event.target.classList.contains('post-username')) {
-//         const userId = event.target.closest('.post-header').dataset.userid;
-//         if (userId) {
-//             const user = fetchUserById(userId);
-//             // Create modal HTML
-//             const modalHTML = `
-//                 <div class="modal-content">
-//                     <span class="close">&times;</span>
-//                     <h2>${user.username}'s Profile</h2>
-//                     <img src="${user.image}" alt="profile-image">
-//                     <p>Name: ${user.name}</p>
-//                     <p>Email: ${user.email}</p>
-//                     <p>Phone: ${user.phone}</p>
-//                     <p>Website: ${user.website}</p>
-//                     <p>Company: ${user.company.name}</p>
-//                 </div>`;
-//             // Append modal HTML to the body
-//             document.body.insertAdjacentHTML('beforeend', modalHTML);
-//             // Add event listener to close the modal
-//             document.querySelector('.modal .close').addEventListener('click', () => {
-//                 document.querySelector('.modal').remove();
-//             });
-//         }
-//     }
-// });
-
-// // Function to fetch user profile by user ID
-// async function fetchUserProfile(userId) {
-//     const response = await fetch(`https://dummyjson.com/user/${userId}`);
-//     const userData = await response.json();
-//     return userData;
-// }
-
-// // Event listener to display user profile modal on username click
-// document.addEventListener('click', async (event) => {
-//     if (event.target.classList.contains('post-username')) {
-//         const userId = event.target.parentElement.dataset.userid;
-//         const userProfile = await fetchUserProfile(userId);
-//         displayUserProfileModal(userProfile);
-//     }
-// });
-
-// // Function to display user profile modal
-// function displayUserProfileModal(userProfile) {
-//     // Create modal HTML structure
-//     const modal = document.createElement('div');
-//     modal.classList.add('modal');
-//     modal.innerHTML = `
-//         <div class="modal-content">
-//             <span class="close">&times;</span>
-//             <h2>User Profile</h2>
-//             <p>Name: ${userProfile.name}</p>
-//             <p>Email: ${userProfile.email}</p>
-//             <p>Address: ${userProfile.address}</p>
-//             <p>Phone: ${userProfile.phone}</p>
-//             <!-- Add more profile information here -->
-//         </div>
-//     `;
-
-//     // Append modal to the document body
-//     document.body.appendChild(modal);
-
-//     // Close modal event listener
-//     const closeBtn = modal.querySelector('.close');
-//     closeBtn.addEventListener('click', () => {
-//         modal.remove();
-//     });
-// }

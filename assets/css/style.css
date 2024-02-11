@@ -33,20 +33,8 @@ main {
     padding: 20px;
 }
 
-/* Filter section styles */
-/* .filter {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    margin-left: 800px;
-    color: #151715;
-}
-
-.filter select {
-    border-radius: 5px;
-} */
 
 
-/* Center the contact form on the page */
 
 /* Styling for span elements */
 span {
@@ -91,7 +79,7 @@ span {
     padding: 10px;
     background-color: rgb(235, 232, 228);
     border-radius: 10px;
-    /* width: 90%; Set the width to 50% */
+    /* width: 90%; Set the width to 90% */
     box-sizing: border-box; /* Include padding and border in the width */
     /* margin-left: 100px;
     margin-right: 100px; */
@@ -100,6 +88,7 @@ span {
 }
 
 
+/* Adjust the width of each post */
 .post-container {
     width: 50%;
     margin: 0 auto;
@@ -118,6 +107,7 @@ span {
     font-weight: bold;
 }
 
+/* Adjust the margin of the post details */
 .user-id,
 .tags,
 .reactions,
@@ -160,17 +150,6 @@ img {
     border-radius: 5px;
 }
 
-/* Post button styles */
-/* .Post-button {
-    color: rgb(7, 7, 7);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 15px;
-    margin-left: 1050px;
-} */
 
 /* CSS for loading indicator */
 #loadingIndicator {
@@ -183,7 +162,7 @@ img {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 9999;
-    display: none; /* Initially hidden */
+    display: none; 
 }
 
 /* Additional styles for comments */
