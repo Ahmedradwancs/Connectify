@@ -46,6 +46,8 @@ header {
     border-radius: 10px; 
     margin-top: 40px;
     margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: #fefefe;
 
 }
@@ -64,6 +66,11 @@ h2 {
     color: #4a4a4a;
 }
 
+h3 {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    color: #fdfafa;
+}
 p {
     margin-bottom: 15px;
 }
@@ -91,17 +98,19 @@ footer {
 }
 
 .terms {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .policy {
-    margin: 10px;
+    margin: 20px 10px;
+
 }
 
 .terms a {
     color: #faf5fd;
     text-decoration: none;
     font-size: 16px;
+    margin-top: 20px;
 }
 
 #copyright {

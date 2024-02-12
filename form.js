@@ -1,5 +1,5 @@
 document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); //  This line prevents the default form submission behavior, which would cause the page to reload.
 
     // Clear previous error messages
     clearErrorMessages();
@@ -21,8 +21,11 @@ document.querySelector('.close-button').addEventListener('click', function() {
 });
 
 
+// 
 function validateName() {
     const name = document.getElementById('name').value;
+    // The regular expression /\d/ matches any digit (0-9), The test() method checks if this pattern exists in the name string
+    // This is copied from stackoverflow
     if (/\d/.test(name) || name === '') {
         displayErrorMessage('nameError', "Name cannot contain any numbers and cannot be empty!");
         return false;
