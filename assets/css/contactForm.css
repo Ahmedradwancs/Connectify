@@ -90,3 +90,13 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: green; 
 }
+
+.modal-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-button {
+    order: 2;
+}

@@ -3,7 +3,6 @@ const users = [];
 const posts = [];
 const comments = [];
 
-// Define pagination variables
 let currentPage = 1;
 const itemsPerPage = 5;
 
